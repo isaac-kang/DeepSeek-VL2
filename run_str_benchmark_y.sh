@@ -24,7 +24,7 @@ python str_evaluation.py \
     --max_samples 10 \
     --batch_size 1 \
     --device auto \
-    --prompt "What is the main text in the image? Output only the text." \
+    --prompt "What is the main word in the image? Output only the text." \
     --case-sensitive false \
     --ignore-punctuation true \
     --ignore-spaces true \

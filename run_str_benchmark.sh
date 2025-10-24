@@ -19,14 +19,14 @@ export STR_DATA_DIR=/data/isaackang/data/STR/english_case-sensitive/lmdb/evaluat
 #   --results_dir DIR         : Results directory (default: str_benchmark_results)
 #   --chunk_size N            : Chunk size for incremental prefilling (default: -1)
 
-    # --datasets "CUTE80,SVT,SVTP,IC13_857,IC15_1811,IIIT5k_3000" \
+    # --datasets "CUTE80" \
 python str_evaluation.py \
-    --datasets "CUTE80" \
-    --model_name "deepseek-ai/deepseek-vl2-small" \
-    --max_samples 10 \
+    --datasets "CUTE80,SVT,SVTP,IC13_857,IC15_1811,IIIT5k_3000" \
+    --model_name "deepseek-ai/deepseek-vl2-tiny" \
+    --max_samples -1 \
     --batch_size 1 \
     --device auto \
-    --prompt "What is the main text in the image? Output only the text." \
+    --prompt "What is the main word in the image? Output only the text." \
     --case-sensitive false \
     --ignore-punctuation true \
     --ignore-spaces true \

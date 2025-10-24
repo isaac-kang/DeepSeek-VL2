@@ -28,7 +28,7 @@ class DeepSeekVL2STREvaluator:
                  batch_size: int = 1, chunk_size: int = -1):
         self.model_name = model_name
         self.device = device
-        self.prompt = prompt or "What is the main text in the image? Output only the text."
+        self.prompt = prompt
         self.case_sensitive = case_sensitive
         self.ignore_punctuation = ignore_punctuation
         self.ignore_spaces = ignore_spaces
@@ -371,7 +371,7 @@ def main():
                        help='Maximum number of samples to evaluate (None for all)')
     parser.add_argument('--device', type=str, default="auto",
                        help='Device to use for inference')
-    parser.add_argument('--prompt', type=str, default="What is the main text in the image? Output only the text.",
+    parser.add_argument('--prompt', type=str, default="What is the main word in the image? Output only the text.",
                        help='Custom prompt for text recognition')
     parser.add_argument('--case-sensitive', type=lambda x: x.lower() == 'true', default=False,
                        help='Enable case-sensitive evaluation (default: False)')
