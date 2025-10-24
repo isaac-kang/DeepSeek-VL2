@@ -66,6 +66,14 @@ class OCRTestEvaluator:
         print(f"Chunk size: {self.chunk_size}")
         print("Model loaded successfully!")
         
+        # Print GPU information
+        if torch.cuda.is_available():
+            gpu_name = torch.cuda.get_device_name(0)
+            gpu_memory = torch.cuda.get_device_properties(0).total_memory / 1024**3
+            print(f"Using GPU: {gpu_name} ({gpu_memory:.1f} GB)")
+        else:
+            print("Using CPU")
+        
     def load_dataset(self, dataset_path: str) -> List[Dict]:
         """
         Load dataset from labels.json

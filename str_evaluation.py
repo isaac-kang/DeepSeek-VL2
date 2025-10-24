@@ -60,6 +60,14 @@ class DeepSeekVL2STREvaluator:
             print(f"Model device: {next(self.vl_gpt.parameters()).device}")
             print(f"Model dtype: {next(self.vl_gpt.parameters()).dtype}")
             
+            # Print GPU information
+            if torch.cuda.is_available():
+                gpu_name = torch.cuda.get_device_name(0)
+                gpu_memory = torch.cuda.get_device_properties(0).total_memory / 1024**3
+                print(f"Using GPU: {gpu_name} ({gpu_memory:.1f} GB)")
+            else:
+                print("Using CPU")
+            
         except Exception as e:
             print(f"Error loading model: {e}")
             raise
