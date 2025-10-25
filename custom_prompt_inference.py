@@ -101,11 +101,24 @@ class CustomPromptInference:
             
             # Generate
             with torch.no_grad():
+                # Extract inputs_embeds from prepare_inputs
+                inputs_embeds = self.vl_gpt.prepare_inputs_embeds(**prepare_inputs)
+                
                 outputs = self.vl_gpt.generate(
-                    **prepare_inputs,
+                    inputs_embeds=inputs_embeds,
+                    input_ids=prepare_inputs.input_ids,
+                    images=prepare_inputs.images,
+                    images_seq_mask=prepare_inputs.images_seq_mask,
+                    images_spatial_crop=prepare_inputs.images_spatial_crop,
+                    attention_mask=prepare_inputs.attention_mask,
+                    
+                    pad_token_id=self.tokenizer.eos_token_id,
+                    bos_token_id=self.tokenizer.bos_token_id,
+                    eos_token_id=self.tokenizer.eos_token_id,
                     max_new_tokens=self.max_new_tokens,
+                    
                     do_sample=False,
-                    eos_token_id=self.tokenizer.eos_token_id
+                    use_cache=True,
                 )
             
             # Decode prediction
